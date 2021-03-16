@@ -5,6 +5,10 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
@@ -25,6 +29,33 @@ public class PrimaryController {
     private Canvas canvas;
 
     @FXML
+    private Label lblShapes;
+
+    @FXML
+    private ComboBox<String> cbShapes;
+
+    @FXML
+    private Label lblLineWidth;
+
+    @FXML
+    private ColorPicker cpLineColor;
+
+    @FXML
+    private ColorPicker cpFillColor;
+
+    @FXML
+    private CheckBox cbFill;
+
+    @FXML
+    private ComboBox<String> cbLineWidth;
+
+    @FXML
+    private Label lblLineColor;
+
+    @FXML
+    private Label lblFillColor;
+
+    @FXML
     void initialize() {
 
         GraphicsContext gc = canvas.getGraphicsContext2D();          // получение буфера канвы
@@ -34,6 +65,14 @@ public class PrimaryController {
         drawOval(gc);
         drawPoligon(gc);
         drawArc(gc);
+        // заполнение названий фигур
+        cbShapes.getItems().addAll("line", "circle", "triangle", "rectangle", "square");
+        cbShapes.setValue("line");
+        // заполнение толщиный линий
+        cbLineWidth.getItems().addAll("1px", "5px", "10px", "15px");
+        cbLineWidth.setValue("1px");
+        // создание объекта свойств всех фигур
+        ShapeProperties shapeProperties = new ShapeProperties();
     }
 
     private  void  drawCutLine(GraphicsContext gc){

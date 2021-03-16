@@ -2,12 +2,9 @@ package org.example;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -21,7 +18,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        scene = new Scene(loadFXML("primary"), 900, 700);       // создание сцены и подключение fxml файла
+        scene = new Scene(loadFXML("primary"), 1100, 800);      // создание сцены и подключение fxml файла
         primaryStage.setScene(scene);                                  // установка сцены для объекта primaryStage
         primaryStage.setTitle("Paint");                                // установка заголовка
         primaryStage.centerOnScreen();                                 // расположение окна в центре экрана
@@ -40,4 +37,5 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
+
 }
