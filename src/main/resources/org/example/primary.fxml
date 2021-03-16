@@ -14,10 +14,10 @@
 <Pane fx:id="mainPain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.PrimaryController">
    <children>
       <MenuBar layoutY="2.0" prefHeight="20.0" prefWidth="1100.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="New" />
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="New" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Open" />
                   <SeparatorMenuItem mnemonicParsing="false" />
@@ -25,19 +25,19 @@
                   <MenuItem mnemonicParsing="false" text="Save As..." />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Undo" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Undo" />
                   <MenuItem mnemonicParsing="false" text="Redo" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Cut" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" text="Copy" />
-            </items>
-          </Menu>
-        </menus>
+               </items>
+            </Menu>
+         </menus>
       </MenuBar>
       <Canvas fx:id="canvas" height="558.0" layoutX="109.0" layoutY="172.0" width="857.0" />
       <Pane layoutY="20.0" prefHeight="50.0" prefWidth="1100.0">

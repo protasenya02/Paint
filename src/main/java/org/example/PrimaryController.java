@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
-import javafx.scene.shape.Rectangle;
+
 
 public class PrimaryController {
 
@@ -65,14 +65,12 @@ public class PrimaryController {
         drawOval(gc);
         drawPoligon(gc);
         drawArc(gc);
-        // заполнение названий фигур
-        cbShapes.getItems().addAll("line", "circle", "triangle", "rectangle", "square");
-        cbShapes.setValue("line");
-        // заполнение толщиный линий
+        // инициализация компонента списка фигур
+        cbShapes.getItems().addAll("Line", "Circle", "Triangle", "Rectangle", "Star");
+        cbShapes.setValue("Line");
+        // инициализация компонента толщины линии
         cbLineWidth.getItems().addAll("1px", "5px", "10px", "15px");
         cbLineWidth.setValue("1px");
-        // создание объекта свойств всех фигур
-        ShapeProperties shapeProperties = new ShapeProperties();
     }
 
     private  void  drawCutLine(GraphicsContext gc){
