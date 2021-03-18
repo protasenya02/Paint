@@ -1,30 +1,26 @@
 package org.example;
 
 
-import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 // класс круга
-public class Circle extends AbstractShape {
+public class Circle implements Shape {
 
-    Color fillColor;
-    Color borderColor;
-    int borderWidth;
-    Point center;
-    Point radius;
-    boolean fill;
+    private final Color fillColor;
+    private final Color lineColor;
+    private final int lineWidth;
+    private final Point[] pointsArr;
+    private final boolean fill;
 
-    @Override
-    void changeProperties(ShapeProperties shapeProperties) {
+    public Circle(Color lineColor, boolean isFill, Color fillColor, int lineWidth, Point[] pointsArr) {
 
-        fillColor = shapeProperties.fillColor;
-        borderColor = shapeProperties.lineColor;
-        borderWidth = shapeProperties.lineWidth;
-        center = shapeProperties.startPoint;
-        radius = shapeProperties.endPoint;
-        fill = shapeProperties.isFill;
+        this.fillColor = fillColor;
+        this.lineColor = lineColor;
+        this.lineWidth = lineWidth;
+        this.pointsArr = pointsArr;
+        this.fill = isFill;
     };
-
     @Override
-    void draw(Canvas canvas){};
+    public void draw(GraphicsContext gc){};
 }

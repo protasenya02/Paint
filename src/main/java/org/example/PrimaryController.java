@@ -18,40 +18,28 @@ public class PrimaryController {
 
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private Pane mainPain;
-
     @FXML
     private Canvas canvas;
-
     @FXML
     private Label lblShapes;
-
     @FXML
     private ComboBox<String> cbShapes;
-
     @FXML
     private Label lblLineWidth;
-
     @FXML
     private ColorPicker cpLineColor;
-
     @FXML
     private ColorPicker cpFillColor;
-
     @FXML
     private CheckBox cbFill;
-
     @FXML
     private ComboBox<String> cbLineWidth;
-
     @FXML
     private Label lblLineColor;
-
     @FXML
     private Label lblFillColor;
 
@@ -71,6 +59,8 @@ public class PrimaryController {
         // инициализация компонента толщины линии
         cbLineWidth.getItems().addAll("1px", "5px", "10px", "15px");
         cbLineWidth.setValue("1px");
+        // объявление фабрики фигур
+        ShapeFactory shapeFactory;
     }
 
     private  void  drawCutLine(GraphicsContext gc){

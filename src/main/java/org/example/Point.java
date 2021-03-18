@@ -1,10 +1,10 @@
 package org.example;
 
 // класс с координатами точки
-public class Point {
+public  class Point {
 
-    double x;
-    double y;
+    private double x;
+    private double y;
 
     public void setX(double x) {
         this.x = x;
