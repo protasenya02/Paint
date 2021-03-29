@@ -8,9 +8,9 @@ public class Polyline implements Shape {
 
     private final Color lineColor;
     private final int lineWidth;
-    private final Point[] pointsArr;
+    private final double[] pointsArr;
 
-    public Polyline(Color lineColor, boolean isFill, Color fillColor, int lineWidth, Point[] pointsArr) {
+    public Polyline(Color lineColor, boolean isFill, Color fillColor, int lineWidth, double[] pointsArr) {
         this.lineColor = lineColor;
         this.lineWidth = lineWidth;
         this.pointsArr = pointsArr;

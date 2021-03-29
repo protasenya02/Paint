@@ -10,10 +10,10 @@ public class Circle implements Shape {
     private final Color fillColor;
     private final Color lineColor;
     private final int lineWidth;
-    private final Point[] pointsArr;
+    private final double[] pointsArr;
     private final boolean fill;
 
-    public Circle(Color lineColor, boolean isFill, Color fillColor, int lineWidth, Point[] pointsArr) {
+    public Circle(Color lineColor, boolean isFill, Color fillColor, int lineWidth, double[] pointsArr) {
 
         this.fillColor = fillColor;
         this.lineColor = lineColor;

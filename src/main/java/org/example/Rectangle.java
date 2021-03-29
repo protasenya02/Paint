@@ -10,10 +10,10 @@ public class Rectangle implements Shape {
     private final Color fillColor;
     private final Color lineColor;
     private final int lineWidth;
-    private final Point[] pointsArr;
+    private double[] pointsArr;
     private final boolean fill;
 
-    public Rectangle(Color lineColor, boolean isFill, Color fillColor, int lineWidth, Point[] pointsArr) {
+    public Rectangle(Color lineColor, boolean isFill, Color fillColor, int lineWidth, double[] pointsArr) {
         this.fillColor = fillColor;
         this.lineWidth = lineWidth;
         this.lineColor = lineColor;
