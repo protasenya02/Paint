@@ -2,13 +2,9 @@ package org.example;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -17,11 +13,10 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Light.Point;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.ArcType;
 
 
 public class PrimaryController {
@@ -36,8 +31,6 @@ public class PrimaryController {
     private Canvas canvas;
     @FXML
     private Label lblShapes;
-    @FXML
-    private ComboBox<String> cbShapes;
     @FXML
     private Label lblLineWidth;
     @FXML
@@ -60,14 +53,14 @@ public class PrimaryController {
     // объявление фабрики фигур
     private ShapeFactory shapeFactory = null;
 
-    private List<Double> pointsArr = new ArrayList<>();
-
-    private List<Shape> shapeList = new ArrayList<>();
+    private ArrayList<Shape> shapeList = new ArrayList<>();
+    private boolean shapeIsDrawing = false;
+    private  GraphicsContext gc;
 
     @FXML
     void initialize() {
 
-        GraphicsContext gc = canvas.getGraphicsContext2D();          // получение буфера канвы
+        gc = canvas.getGraphicsContext2D();          // получение буфера канвы
 
         ObservableList<String> lineWidth = FXCollections
             .observableArrayList("1","2","3","5", "10", "15");
@@ -75,49 +68,43 @@ public class PrimaryController {
         cbLineWidth.getItems().addAll(lineWidth);
         cbLineWidth.setValue("1");
 
-        ObservableList<String> shapes = FXCollections
-            .observableArrayList("Line", "Circle", "Triangle", "Rectangle");
-        // инициализация компонента списка фигур
-        cbShapes.getItems().addAll(shapes);
-        cbShapes.setValue("Line");
 
+        canvas.setOnMouseMoved( e -> {
 
-        canvas.setOnMouseReleased( e -> {
-
-            pointsArr.add(e.getX());
-            pointsArr.add(e.getY());
-
-            Double[] arr = new Double[pointsArr.size()];
-            pointsArr.toArray(arr);
-            double[] points = Stream.of(arr).mapToDouble(Double::doubleValue).toArray();
-            int width = Integer.parseInt(cbLineWidth.getValue());
-
-            Shape shape = shapeFactory.createShape(cpLineColor.getValue(), cbFill.isSelected(), cpFillColor.getValue(), width, points);
-            shape.draw(gc);
-
-            shapeList.add(shape);
-            pointsArr.clear();
-
-        });
-
-        canvas.setOnMouseDragged( e -> {
 
 
         });
 
-        // initial coordinates
-        canvas.setOnMousePressed( e -> {
 
-            pointsArr.add(e.getX());
-            pointsArr.add(e.getY());
-
-        });
 
     }
 
-    public void btnLineClicked() {
-        shapeFactory = new LineFactory();
+    public void btnLineClicked() { shapeFactory = new PolylineFactory(); }
+    public void btnRectClicked() {
+        shapeFactory = new RectangleFactory();
     }
 
+    public void mouseClicked(MouseEvent e) {
+
+        // left
+        if (e.getButton() == MouseButton.PRIMARY) {
+
+            Point location = MouseInfo.getPointerInfo().getLocation();
+
+
+            if (!shapeIsDrawing) {
+
+                shapeIsDrawing = true;
+                Shape shape = shapeFactory.createShape(cpLineColor.getValue(), cbFill.isSelected(),
+                    cpFillColor.getValue(), 5);
+                shapeList.add(shape);
+                shape.draw(gc, newPoint);
+
+            } else {
+                shapeList.get(shapeList.size()).draw(gc, newPoint);
+            }
+        };
+
+    }
 
 }

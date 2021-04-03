@@ -44,7 +44,6 @@
       <Pane layoutX="-9.0" layoutY="20.0" prefHeight="101.0" prefWidth="1109.0">
          <children>
             <Label fx:id="lblShapes" layoutX="16.0" layoutY="26.0" prefWidth="47.0" text="Shapes:" />
-            <ComboBox fx:id="cbShapes" focusTraversable="false" layoutX="75.0" layoutY="21.0" prefHeight="28.0" prefWidth="137.0" />
             <Label fx:id="lblLineWidth" layoutX="230.0" layoutY="26.0" text="Line width:" />
             <ColorPicker fx:id="cpLineColor" focusTraversable="false" layoutX="480.0" layoutY="21.0" />
             <ColorPicker fx:id="cpFillColor" focusTraversable="false" layoutX="775.0" layoutY="21.0" />
@@ -52,8 +51,8 @@
             <ComboBox fx:id="cbLineWidth" focusTraversable="false" layoutX="305.0" layoutY="21.0" prefWidth="90.0" />
             <Label fx:id="lblLineColor" layoutX="410.0" layoutY="26.0" prefHeight="18.0" prefWidth="70.0" text="Line color:" />
             <Label fx:id="lblFillColor" layoutX="710.0" layoutY="26.0" prefHeight="18.0" prefWidth="70.0" text="Fill color:" />
-            <Button fx:id="btnLine" layoutX="36.0" layoutY="53.0" minWidth="40.0" mnemonicParsing="false" onAction="#btnLineClicked" prefHeight="31.0" prefWidth="40.0" text="line" />
-            <Button fx:id="btnRect" layoutX="105.0" layoutY="53.0" mnemonicParsing="false" text="rect" />
+            <Button fx:id="btnLine" focusTraversable="false" layoutX="67.0" layoutY="19.0" minWidth="40.0" mnemonicParsing="false" onAction="#btnLineClicked" prefHeight="31.0" prefWidth="40.0" text="line" />
+            <Button fx:id="btnRect" layoutX="137.0" layoutY="19.0" mnemonicParsing="false" onAction="#btnRectClicked" text="rect" />
          </children>
       </Pane>
    </children>
