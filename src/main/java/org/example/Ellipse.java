@@ -12,8 +12,8 @@ public class Ellipse implements Shape {
     private final boolean isFill;
     private final Color fillColor;
     private final int lineWidth;
-    private Point topLeftPoint;
-    private Point bottomRightPoint;
+    private Point firstPoint;
+    private Point secondPoint;
     private boolean firstDrawCall = true;
 
     public Ellipse(Color lineColor, boolean isLine, boolean isFill, Color fillColor, int lineWidth) {
@@ -35,31 +35,34 @@ public class Ellipse implements Shape {
             gc.setLineWidth(lineWidth);
             gc.setFill(fillColor);
 
-            bottomRightPoint = point;
+            secondPoint = point;
 
-            double height = countHeight();
-            double width = countWidth();
+            double width = Math.abs(secondPoint.getX() - firstPoint.getX());
+            double height = Math.abs(secondPoint.getY() - firstPoint.getY());
+
+            double startPointX = Math.min(firstPoint.getX(), secondPoint.getX());
+            double startPointY = Math.min(firstPoint.getY(), secondPoint.getY());
 
             if (isFill) {
 
-                gc.fillOval(topLeftPoint.getX(), topLeftPoint.getY() - (height / 2), width, height);
+                gc.fillOval(startPointX, startPointY, width, height);
 
                 if (isLine) {
 
-                    gc.strokeOval(topLeftPoint.getX(), topLeftPoint.getY() - (height / 2), width, height);
+                    gc.strokeOval(startPointX, startPointY, width, height);
 
                 }
 
             } else {
 
-                gc.strokeOval(topLeftPoint.getX(), topLeftPoint.getY() - (height / 2), width, height);
+                gc.strokeOval(startPointX, startPointY, width, height);
 
             }
 
             return false;
         }
 
-        topLeftPoint = point;
+        firstPoint = point;
         firstDrawCall = false;
         return true;
 
@@ -72,60 +75,27 @@ public class Ellipse implements Shape {
         gc.setLineWidth(lineWidth);
         gc.setFill(fillColor);
 
-        double height = countHeight();
-        double width = countWidth();
+        double width = Math.abs(secondPoint.getX() - firstPoint.getX());
+        double heigth = Math.abs(secondPoint.getY() - firstPoint.getY());
+
+        double startPointX = Math.min(firstPoint.getX(), secondPoint.getX());
+        double startPointY = Math.min(firstPoint.getY(), secondPoint.getY());
 
         if (isFill) {
 
-            gc.fillOval(topLeftPoint.getX(),topLeftPoint.getY() - (height/2), width, height);
+            gc.fillOval(startPointX, startPointY, width, heigth);
 
             if (isLine) {
 
-                gc.strokeOval(topLeftPoint.getX(), topLeftPoint.getY() - (height / 2), width, height);
+                gc.strokeOval(startPointX, startPointY, width, heigth);
 
             }
 
         } else {
 
-            gc.strokeOval(topLeftPoint.getX(),topLeftPoint.getY() - (height/2), width, height);
+            gc.strokeOval(startPointX, startPointY, width, heigth);
 
         }
-
     };
-
-    private double countWidth() {
-
-        double width;
-
-        if (bottomRightPoint.getX() > topLeftPoint.getX()) {
-
-            width = bottomRightPoint.getY() - topLeftPoint.getY();
-
-        } else {
-
-            width = topLeftPoint.getX() - bottomRightPoint.getX();
-
-        }
-
-        return width;
-    }
-
-
-    private double countHeight() {
-
-        double height;
-
-        if (bottomRightPoint.getY() > topLeftPoint.getY()) {
-
-            height = bottomRightPoint.getY() - topLeftPoint.getY();
-
-        } else {
-
-            height = topLeftPoint.getY() - bottomRightPoint.getY();
-
-        }
-
-        return height;
-    }
 
 }

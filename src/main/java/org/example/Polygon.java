@@ -13,7 +13,6 @@ public class Polygon implements Shape {
     private final Color lineColor;
     private final int lineWidth;
     private ArrayList<Point> pointsArr = new ArrayList<>();
-    private boolean firstDrawCall = true;
 
     public Polygon(Color lineColor, boolean isLine, boolean isFill, Color fillColor, int lineWidth) {
 
@@ -26,25 +25,14 @@ public class Polygon implements Shape {
     @Override
     public boolean draw(GraphicsContext gc, Point point) {
 
-        if (!firstDrawCall) {
+        gc.setStroke(lineColor);
+        gc.setLineWidth(lineWidth);
+        gc.setLineCap(StrokeLineCap.ROUND);
 
-            gc.setStroke(lineColor);
-            gc.setLineWidth(lineWidth);
-            gc.setLineCap(StrokeLineCap.ROUND);
-            gc.strokeLine(pointsArr.get(pointsArr.size()-1).getX(),pointsArr.get(pointsArr.size()-1).getY(),
-                point.getX(), point.getY());
+        pointsArr.add(point);
+        fillPolygon(gc);
 
-            if (pointsArr.size() % 3 == 0)  {
-
-                fillPolygon(gc);
-                firstDrawCall = true;
-
-            };
-        };
-
-       pointsArr.add(point);
-       firstDrawCall = false;
-       return true;
+        return true;
     };
 
     @Override
@@ -74,10 +62,9 @@ public class Polygon implements Shape {
         };
 
         gc.setFill(fillColor);
-        gc.strokePolygon(xPoints, yPoints, nPoints);
+        //gc.strokePolygon(xPoints, yPoints, nPoints);
         gc.fillPolygon(xPoints, yPoints, nPoints);
 
     }
-
 
 }

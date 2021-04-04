@@ -12,8 +12,8 @@ public class Rectangle implements Shape {
     private final boolean isFill;
     private final Color fillColor;
     private final int lineWidth;
-    private Point topLeftPoint;
-    private Point bottomRightPoint;
+    private Point firstPoint;
+    private Point secondPoint;
     private boolean firstDrawCall = true;
 
     public Rectangle(Color lineColor, boolean isLine, boolean isFill, Color fillColor, int lineWidth) {
@@ -23,6 +23,8 @@ public class Rectangle implements Shape {
         this.isFill = isFill;
         this.fillColor = fillColor;
         this.lineWidth = lineWidth;
+
+
 
     }
 
@@ -35,32 +37,37 @@ public class Rectangle implements Shape {
             gc.setLineWidth(lineWidth);
             gc.setFill(fillColor);
 
-            bottomRightPoint = point;
+            secondPoint = point;
 
-            double width = point.getX() - topLeftPoint.getX();
-            double heigth = point.getY() - topLeftPoint.getY();
+            double width = Math.abs(secondPoint.getX() - firstPoint.getX());
+            double height = Math.abs(secondPoint.getY() - firstPoint.getY());
+
+
+            double startPointX = Math.min(firstPoint.getX(), secondPoint.getX());
+            double startPointY = Math.min(firstPoint.getY(), secondPoint.getY());
 
             if (isFill) {
 
-                gc.fillRect(topLeftPoint.getX(),topLeftPoint.getY(), width, heigth);
+                gc.fillRect(startPointX, startPointY, width, height);
 
                 if (isLine) {
 
-                    gc.strokeRect(topLeftPoint.getX(),topLeftPoint.getY(), width, heigth);
+                    gc.strokeRect(startPointX, startPointY, width, height);
 
                 }
 
             } else {
 
-                gc.strokeRect(topLeftPoint.getX(),topLeftPoint.getY(), width, heigth);
+                gc.strokeRect(startPointX, startPointY, width, height);
 
             }
             return false;
         }
 
-        topLeftPoint = point;
+        firstPoint = point;
         firstDrawCall = false;
         return true;
+
     };
 
     @Override
@@ -70,22 +77,25 @@ public class Rectangle implements Shape {
         gc.setLineWidth(lineWidth);
         gc.setFill(fillColor);
 
-        double width = bottomRightPoint.getX() - topLeftPoint.getX();
-        double heigth = bottomRightPoint.getY() - topLeftPoint.getY();
+        double width = Math.abs(secondPoint.getX() - firstPoint.getX());
+        double height = Math.abs(secondPoint.getY() - firstPoint.getY());
+
+        double startPointX = Math.min(firstPoint.getX(), secondPoint.getX());
+        double startPointY = Math.min(firstPoint.getY(), secondPoint.getY());
 
         if (isFill) {
 
-          gc.fillRect(topLeftPoint.getX(),topLeftPoint.getY(), width, heigth);
+            gc.fillRect(startPointX, startPointY, width, height);
 
             if (isLine) {
 
-                gc.strokeRect(topLeftPoint.getX(),topLeftPoint.getY(), width, heigth);
+                gc.strokeRect(startPointX, startPointY, width, height);
 
             }
 
         } else {
 
-          gc.strokeRect(topLeftPoint.getX(),topLeftPoint.getY(), width, heigth);
+            gc.strokeRect(startPointX, startPointY, width, height);
 
         }
     };

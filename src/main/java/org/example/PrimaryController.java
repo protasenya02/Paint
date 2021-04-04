@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.Light.Point;
 import javafx.scene.input.MouseButton;
@@ -18,13 +16,7 @@ import javafx.scene.paint.Color;
 public class PrimaryController {
 
     @FXML
-    private Pane mainPain;
-    @FXML
     private Canvas canvas;
-    @FXML
-    private Label lblShapes;
-    @FXML
-    private Label lblLineWidth;
     @FXML
     private ColorPicker cpLineColor;
     @FXML
@@ -35,28 +27,17 @@ public class PrimaryController {
     private CheckBox cbBorder;
     @FXML
     private TextField tfLineWidth;
-    @FXML
-    private Label lblLineColor;
-    @FXML
-    private Label lblFillColor;
-    @FXML
-    private Button btnLine;
-    @FXML
-    private Button btnRect;
 
     private ShapeFactory shapeFactory = null;
     private ArrayList<Shape> shapeList = new ArrayList<>();
     private ArrayList<Point> points = new ArrayList<>();
     private boolean isShapeDrawing = false;
+    private GraphicsContext gc;
 
     @FXML
     void initialize() {
 
-        cpLineColor.setValue(Color.rgb(0,0,0));
-        cpFillColor.setValue(Color.rgb(0,0,0));
-        tfLineWidth.setText("5");
-
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc = canvas.getGraphicsContext2D();
         shapeFactory = new PolylineFactory();
 
         canvas.setOnMouseClicked( e -> {
@@ -166,5 +147,14 @@ public class PrimaryController {
       cbFill.setSelected(true);
 
     }
+
+    public void btnClearCliсked() {
+
+       gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+       shapeList.clear();
+
+    }
+
+
 
 }
