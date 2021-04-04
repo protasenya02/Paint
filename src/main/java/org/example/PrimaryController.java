@@ -1,7 +1,6 @@
 package org.example;
 
 import java.util.ArrayList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -11,7 +10,6 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.Light.Point;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -87,7 +85,7 @@ public class PrimaryController {
                     if (!isShapeDrawing) {
                         points.clear();
                     }
-                };
+                }
 
             // right
             } else {
@@ -95,8 +93,9 @@ public class PrimaryController {
                 isShapeDrawing = false;
                 points.clear();
 
-            };
+            }
         });
+
 
         canvas.setOnMouseMoved( e -> {
 
@@ -109,6 +108,7 @@ public class PrimaryController {
                 }
 
                 shapeList.remove(shapeList.size() - 1);
+
                 int width = Integer.parseInt(tfLineWidth.getText());
                 Shape shape = shapeFactory.createShape(cpLineColor.getValue(), cbBorder.isSelected(),
                     cbFill.isSelected(), cpFillColor.getValue(), width);
@@ -124,27 +124,47 @@ public class PrimaryController {
                 shapeList.add(shape);
                 points.remove(points.size() - 1);
             }
-
         });
-
 
     }
 
     public void btnLineClicked() {
-      shapeFactory = new PolylineFactory();}
+
+        shapeFactory = new PolylineFactory();
+        cbBorder.setSelected(false);
+        cbFill.setSelected(false);
+    }
 
     public void btnRectClicked() {
-      shapeFactory = new RectangleFactory();}
+
+      shapeFactory = new RectangleFactory();
+      cbBorder.setSelected(false);
+      cbFill.setSelected(false);
+
+    }
 
     public void btnCircleClicked() {
-      shapeFactory = new CircleFactory();}
+
+      shapeFactory = new CircleFactory();
+      cbBorder.setSelected(false);
+      cbFill.setSelected(false);
+
+    }
 
     public void btnEllipseClicked() {
-      shapeFactory = new EllipseFactory();}
+
+      shapeFactory = new EllipseFactory();
+      cbBorder.setSelected(false);
+      cbFill.setSelected(false);
+
+    }
 
     public void btnPolygonClicked() {
-      shapeFactory = new PolylineFactory();}
 
+      shapeFactory = new PolygonFactory();
+      cbBorder.setSelected(true);
+      cbFill.setSelected(true);
 
+    }
 
 }

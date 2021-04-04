@@ -4,7 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Light.Point;
 import javafx.scene.paint.Color;
 
-// класс прямоугольника
+
 public class Rectangle implements Shape {
 
     private final Color lineColor;

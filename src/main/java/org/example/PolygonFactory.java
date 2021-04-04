@@ -8,7 +8,7 @@ public class PolygonFactory implements ShapeFactory{
     public Shape createShape(Color lineColor, boolean isLine, boolean isFill, Color fillColor,
         int lineWidth) {
 
-      return new Polygon(lineColor, isLine, isFill, fillColor, lineWidth);
+        return new Polygon(lineColor, isLine, isFill, fillColor, lineWidth);
 
     }
 }

@@ -37,11 +37,8 @@ public class Ellipse implements Shape {
 
             bottomRightPoint = point;
 
-            double height = (point.getY() > topLeftPoint.getY()) ? (point.getY() - topLeftPoint.getY()) :
-                (topLeftPoint.getY() - point.getY());
-
-            double width = (point.getX() > topLeftPoint.getX()) ? (point.getY() - topLeftPoint.getY()) :
-                (topLeftPoint.getX() - point.getX());
+            double height = countHeight();
+            double width = countWidth();
 
             if (isFill) {
 
@@ -75,11 +72,8 @@ public class Ellipse implements Shape {
         gc.setLineWidth(lineWidth);
         gc.setFill(fillColor);
 
-        double height = (bottomRightPoint.getY() > topLeftPoint.getY()) ? (bottomRightPoint.getY() - topLeftPoint.getY()) :
-            (topLeftPoint.getY() - bottomRightPoint.getY());
-
-        double width = (bottomRightPoint.getX() > topLeftPoint.getX()) ? (bottomRightPoint.getY() - topLeftPoint.getY()) :
-            (topLeftPoint.getX() - bottomRightPoint.getX());
+        double height = countHeight();
+        double width = countWidth();
 
         if (isFill) {
 
@@ -98,4 +92,40 @@ public class Ellipse implements Shape {
         }
 
     };
+
+    private double countWidth() {
+
+        double width;
+
+        if (bottomRightPoint.getX() > topLeftPoint.getX()) {
+
+            width = bottomRightPoint.getY() - topLeftPoint.getY();
+
+        } else {
+
+            width = topLeftPoint.getX() - bottomRightPoint.getX();
+
+        }
+
+        return width;
+    }
+
+
+    private double countHeight() {
+
+        double height;
+
+        if (bottomRightPoint.getY() > topLeftPoint.getY()) {
+
+            height = bottomRightPoint.getY() - topLeftPoint.getY();
+
+        } else {
+
+            height = topLeftPoint.getY() - bottomRightPoint.getY();
+
+        }
+
+        return height;
+    }
+
 }

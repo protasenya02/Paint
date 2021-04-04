@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeLineJoin;
 
-// класс ломанной линии
+
 public class Polyline implements Shape {
 
     private final Color lineColor;

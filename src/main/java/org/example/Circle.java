@@ -1,13 +1,13 @@
 package org.example;
 
 
-import java.util.ArrayList;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Light.Point;
 import javafx.scene.paint.Color;
 import static java.lang.Math.*;
 
-// класс круга
+
 public class Circle implements Shape {
 
     private final Color lineColor;
@@ -40,8 +40,7 @@ public class Circle implements Shape {
 
             radiusPoint = point;
 
-            double radius = sqrt(pow((radiusPoint.getX()- centerPoint.getX()), 2)
-                + pow((radiusPoint.getY() - centerPoint.getY()), 2));
+            double radius = countRadius();
             double diameter  = radius*2;
 
             if (isFill) {
@@ -77,8 +76,7 @@ public class Circle implements Shape {
         gc.setLineWidth(lineWidth);
         gc.setFill(fillColor);
 
-        double radius = sqrt(pow((radiusPoint.getX()- centerPoint.getX()), 2)
-            + pow((radiusPoint.getY() - centerPoint.getY()), 2));
+        double radius = countRadius();
         double diameter  = radius*2;
 
         if (isFill) {
@@ -99,8 +97,12 @@ public class Circle implements Shape {
                 diameter , diameter );
 
         }
-
     };
 
+    private double countRadius() {
 
+        return sqrt(pow((radiusPoint.getX()- centerPoint.getX()), 2)
+            + pow((radiusPoint.getY() - centerPoint.getY()), 2));
+
+    }
 }
