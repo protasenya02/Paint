@@ -25,25 +25,16 @@ public class Polyline implements Shape {
     @Override
     public boolean draw(GraphicsContext gc, Point point) {
 
-        if (!firstDrawCall) {
-
-            gc.setStroke(lineColor);
-            gc.setLineWidth(lineWidth);
-            gc.setLineCap(StrokeLineCap.ROUND);
-            gc.strokeLine(pointsArr.get(pointsArr.size()-1).getX(),pointsArr.get(pointsArr.size()-1).getY(),
-                            point.getX(), point.getY());
-
-        }
-
         pointsArr.add(point);
-        firstDrawCall = false;
+        fill(gc);
+
         return true;
     };
 
     @Override
-    public void draw(GraphicsContext gc){
+    public void fill(GraphicsContext gc){
 
-        if( pointsArr.size() > 1) {
+        if (pointsArr.size() > 2 ) {
 
             gc.setStroke(lineColor);
             gc.setLineWidth(lineWidth);
@@ -54,7 +45,7 @@ public class Polyline implements Shape {
             double[] xPoints = new double[nPoints];
             double[] yPoints = new double[nPoints];
 
-            for (int i=0; i<pointsArr.size();i++) {
+            for (int i = 0; i < pointsArr.size(); i++) {
                 xPoints[i] = pointsArr.get(i).getX();
                 yPoints[i] = pointsArr.get(i).getY();
             }
@@ -62,4 +53,15 @@ public class Polyline implements Shape {
             gc.strokePolyline(xPoints, yPoints, nPoints);
         }
     };
+
+    @Override
+    public void deleteLastPoint() {
+
+        if (pointsArr.size() > 2) {
+
+            pointsArr.remove(pointsArr.size() - 1);
+
+        }
+    };
+
 }

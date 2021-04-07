@@ -9,8 +9,6 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.Light.Point;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 
 
 public class PrimaryController {
@@ -30,9 +28,9 @@ public class PrimaryController {
 
     private ShapeFactory shapeFactory = null;
     private ArrayList<Shape> shapeList = new ArrayList<>();
-    private ArrayList<Point> points = new ArrayList<>();
     private boolean isShapeDrawing = false;
     private GraphicsContext gc;
+    private  Shape shape;
 
     @FXML
     void initialize() {
@@ -52,109 +50,84 @@ public class PrimaryController {
                 if (!isShapeDrawing) {
 
                     int width = Integer.parseInt(tfLineWidth.getText());
-                    Shape shape = shapeFactory.createShape(cpLineColor.getValue(), cbBorder.isSelected(),
+                    shape = shapeFactory.createShape(cpLineColor.getValue(), cbBorder.isSelected(),
                         cbFill.isSelected(), cpFillColor.getValue(), width);
                     shapeList.add(shape);
                     isShapeDrawing = shape.draw(gc,newPoint);
-                    points.add(newPoint);
 
                 } else {
 
-                    points.add(newPoint);
-                    isShapeDrawing = shapeList.get(shapeList.size() - 1).draw(gc, newPoint);
+                    isShapeDrawing = shape.draw(gc,newPoint);
 
-                    if (!isShapeDrawing) {
-                        points.clear();
-                    }
                 }
 
             // right
             } else {
 
                 isShapeDrawing = false;
-                points.clear();
 
             }
         });
-
 
         canvas.setOnMouseMoved( e -> {
 
             if ( isShapeDrawing ) {
 
+                // clear canvas
                 gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
+                // redraw  all shapes except the last one
                 for (int i = 0; i < shapeList.size() - 1; i++) {
-                    shapeList.get(i).draw(gc);
+                    shapeList.get(i).fill(gc);
                 }
 
-                shapeList.remove(shapeList.size() - 1);
-
-                int width = Integer.parseInt(tfLineWidth.getText());
-                Shape shape = shapeFactory.createShape(cpLineColor.getValue(), cbBorder.isSelected(),
-                    cbFill.isSelected(), cpFillColor.getValue(), width);
-
+                shape.deleteLastPoint();
+                
+                // add current point
                 Point newPoint = new Point();
                 newPoint.setX(e.getX());
                 newPoint.setY(e.getY());
-
-                points.add(newPoint);
-                for (Point point : points) {
-                    shape.draw(gc, point);
-                }
-                shapeList.add(shape);
-                points.remove(points.size() - 1);
+                shape.draw(gc, newPoint);
             }
         });
-
     }
 
     public void btnLineClicked() {
 
         shapeFactory = new PolylineFactory();
-        cbBorder.setSelected(false);
-        cbFill.setSelected(false);
+
     }
 
     public void btnRectClicked() {
 
       shapeFactory = new RectangleFactory();
-      cbBorder.setSelected(false);
-      cbFill.setSelected(false);
 
     }
 
     public void btnCircleClicked() {
 
       shapeFactory = new CircleFactory();
-      cbBorder.setSelected(false);
-      cbFill.setSelected(false);
 
     }
 
     public void btnEllipseClicked() {
 
       shapeFactory = new EllipseFactory();
-      cbBorder.setSelected(false);
-      cbFill.setSelected(false);
 
     }
 
     public void btnPolygonClicked() {
 
       shapeFactory = new PolygonFactory();
-      cbBorder.setSelected(true);
-      cbFill.setSelected(true);
-
     }
 
     public void btnClearCliсked() {
 
        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
        shapeList.clear();
+       isShapeDrawing = false;
 
     }
-
 
 
 }

@@ -31,45 +31,20 @@ public class Ellipse implements Shape {
 
         if (!firstDrawCall) {
 
-            gc.setStroke(lineColor);
-            gc.setLineWidth(lineWidth);
-            gc.setFill(fillColor);
-
             secondPoint = point;
-
-            double width = Math.abs(secondPoint.getX() - firstPoint.getX());
-            double height = Math.abs(secondPoint.getY() - firstPoint.getY());
-
-            double startPointX = Math.min(firstPoint.getX(), secondPoint.getX());
-            double startPointY = Math.min(firstPoint.getY(), secondPoint.getY());
-
-            if (isFill) {
-
-                gc.fillOval(startPointX, startPointY, width, height);
-
-                if (isLine) {
-
-                    gc.strokeOval(startPointX, startPointY, width, height);
-
-                }
-
-            } else {
-
-                gc.strokeOval(startPointX, startPointY, width, height);
-
-            }
+            fill(gc);
 
             return false;
         }
 
         firstPoint = point;
         firstDrawCall = false;
-        return true;
 
+        return true;
     };
 
     @Override
-    public void draw(GraphicsContext gc) {
+    public void fill(GraphicsContext gc) {
 
         gc.setStroke(lineColor);
         gc.setLineWidth(lineWidth);
@@ -96,6 +71,11 @@ public class Ellipse implements Shape {
             gc.strokeOval(startPointX, startPointY, width, heigth);
 
         }
+    };
+
+    @Override
+    public void deleteLastPoint() {
+
     };
 
 }

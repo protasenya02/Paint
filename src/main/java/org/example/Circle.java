@@ -34,43 +34,20 @@ public class Circle implements Shape {
 
         if (!firstDrawCall) {
 
-            gc.setStroke(lineColor);
-            gc.setLineWidth(lineWidth);
-            gc.setFill(fillColor);
-
             radiusPoint = point;
+            fill(gc);
 
-            double radius = countRadius();
-            double diameter  = radius*2;
-
-            if (isFill) {
-
-               gc.fillOval(centerPoint.getX() - radius, centerPoint.getY() - radius,
-                   diameter , diameter );
-
-                if (isLine) {
-
-                gc.strokeOval(centerPoint.getX() - radius, centerPoint.getY() - radius,
-                    diameter, diameter);
-
-                }
-
-            } else {
-
-                gc.strokeOval(centerPoint.getX() - radius, centerPoint.getY() - radius,
-                    diameter , diameter );
-
-            }
             return false;
         }
 
         centerPoint = point;
         firstDrawCall = false;
+
         return true;
     };
 
     @Override
-    public void draw(GraphicsContext gc) {
+    public void fill(GraphicsContext gc) {
 
         gc.setStroke(lineColor);
         gc.setLineWidth(lineWidth);
@@ -105,4 +82,9 @@ public class Circle implements Shape {
             + pow((radiusPoint.getY() - centerPoint.getY()), 2));
 
     }
+
+    @Override
+    public void deleteLastPoint() {
+
+    };
 }

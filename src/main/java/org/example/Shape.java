@@ -9,7 +9,9 @@ interface Shape {
 
     boolean draw(GraphicsContext gc, Point point);
 
-    void draw(GraphicsContext gc);
+    void fill(GraphicsContext gc);
+
+    void deleteLastPoint();
 
 }
 

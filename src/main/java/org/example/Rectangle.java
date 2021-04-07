@@ -33,45 +33,20 @@ public class Rectangle implements Shape {
 
         if (!firstDrawCall) {
 
-            gc.setStroke(lineColor);
-            gc.setLineWidth(lineWidth);
-            gc.setFill(fillColor);
-
             secondPoint = point;
+            fill(gc);
 
-            double width = Math.abs(secondPoint.getX() - firstPoint.getX());
-            double height = Math.abs(secondPoint.getY() - firstPoint.getY());
-
-
-            double startPointX = Math.min(firstPoint.getX(), secondPoint.getX());
-            double startPointY = Math.min(firstPoint.getY(), secondPoint.getY());
-
-            if (isFill) {
-
-                gc.fillRect(startPointX, startPointY, width, height);
-
-                if (isLine) {
-
-                    gc.strokeRect(startPointX, startPointY, width, height);
-
-                }
-
-            } else {
-
-                gc.strokeRect(startPointX, startPointY, width, height);
-
-            }
             return false;
         }
 
         firstPoint = point;
         firstDrawCall = false;
-        return true;
 
+        return true;
     };
 
     @Override
-    public void draw(GraphicsContext gc) {
+    public void fill(GraphicsContext gc) {
 
         gc.setStroke(lineColor);
         gc.setLineWidth(lineWidth);
@@ -100,4 +75,9 @@ public class Rectangle implements Shape {
         }
     };
 
+    @Override
+    public void deleteLastPoint() {
+
+
+    };
 }
