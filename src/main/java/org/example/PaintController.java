@@ -2,14 +2,12 @@ package org.example;
 
 
 import java.io.File;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.Light.Point;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
@@ -19,6 +17,8 @@ import org.example.factories.PolygonFactory;
 import org.example.factories.PolylineFactory;
 import org.example.factories.RectangleFactory;
 import org.example.factories.ShapeFactory;
+import org.example.shapeOptions.Color;
+import org.example.shapeOptions.Point;
 import org.example.shapes.Shape;
 
 public class PaintController {
@@ -74,9 +74,7 @@ public class PaintController {
     @FXML
     void canvasMouseClicked(MouseEvent mouseEvent) {
 
-            Point newPoint = new Point();
-            newPoint.setX(mouseEvent.getX());
-            newPoint.setY(mouseEvent.getY());
+            Point newPoint = new Point(mouseEvent.getX(), mouseEvent.getY());
 
             // left
             if (mouseEvent.getButton() == MouseButton.PRIMARY) {
@@ -85,11 +83,11 @@ public class PaintController {
 
                     int width = Integer.parseInt(tfLineWidth.getText());
 
-                    Color lineColor = new Color(cpLineColor.getValue().getRed(), cpLineColor.getValue().getGreen(),
-                        cpLineColor.getValue().getRed(), cpLineColor.getValue().getOpacity());
+                    Color lineColor = new Color(cpLineColor.getValue());
+                    Color fillColor  = new Color(cpFillColor.getValue());
 
                     shape = shapeFactory.createShape(lineColor, cbBorder.isSelected(),
-                        cbFill.isSelected(), cpFillColor.getValue(), width);
+                        cbFill.isSelected(), fillColor, width);
 
                     shapeList.addShape(shape);
 
@@ -119,10 +117,7 @@ public class PaintController {
             shape.deleteLastPoint();
 
             // add current point
-            Point newPoint = new Point();
-            newPoint.setX(mouseEvent.getX());
-            newPoint.setY(mouseEvent.getY());
-
+            Point newPoint = new Point(mouseEvent.getX(), mouseEvent.getY());
             shape.draw(gc, newPoint);
         }
 
@@ -160,7 +155,11 @@ public class PaintController {
         File file = fileChooser.showOpenDialog(null);
 
         if (file != null) {
+
             shapeList.deserializeShapeList(file.toString());
+            shapeList.clearCanvas(gc);
+            shapeList.drawAll(gc);
+
         }
     }
 

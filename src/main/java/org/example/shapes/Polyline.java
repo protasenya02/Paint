@@ -2,8 +2,8 @@ package org.example.shapes;
 
 import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.effect.Light.Point;
-import javafx.scene.paint.Color;
+import org.example.shapeOptions.Point;
+import org.example.shapeOptions.Color;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeLineJoin;
 
@@ -35,7 +35,7 @@ public class Polyline implements Shape {
 
         if (pointsArr.size() > 2 ) {
 
-            gc.setStroke(lineColor);
+            gc.setStroke(lineColor.getPaintColor());
             gc.setLineWidth(lineWidth);
             gc.setLineCap(StrokeLineCap.ROUND);
             gc.setLineJoin(StrokeLineJoin.ROUND);

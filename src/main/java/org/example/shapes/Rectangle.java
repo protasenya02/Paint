@@ -1,8 +1,8 @@
 package org.example.shapes;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.effect.Light.Point;
-import javafx.scene.paint.Color;
+import org.example.shapeOptions.Point;
+import org.example.shapeOptions.Color;
 
 public class Rectangle implements Shape {
 
@@ -45,9 +45,9 @@ public class Rectangle implements Shape {
     @Override
     public void fill(GraphicsContext gc) {
 
-        gc.setStroke(lineColor);
+        gc.setStroke(lineColor.getPaintColor());
         gc.setLineWidth(lineWidth);
-        gc.setFill(fillColor);
+        gc.setFill(fillColor.getPaintColor());
 
         double width = Math.abs(secondPoint.getX() - firstPoint.getX());
         double height = Math.abs(secondPoint.getY() - firstPoint.getY());

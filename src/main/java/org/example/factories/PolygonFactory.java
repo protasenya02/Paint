@@ -1,9 +1,8 @@
 package org.example.factories;
 
-import org.example.Color;
+import org.example.shapeOptions.Color;
 import org.example.shapes.Shape;
 import org.example.shapes.Polygon;
-
 
 public class PolygonFactory implements ShapeFactory {
 

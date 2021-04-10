@@ -8,7 +8,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import org.example.shapes.Shape;
 
 public class ShapeList {
@@ -95,66 +94,56 @@ public class ShapeList {
   public void serializeShapeList (String fileName){
 
     try (
+
         FileOutputStream fileOut = new FileOutputStream(fileName);
-        ObjectOutputStream out = new ObjectOutputStream(fileOut);
-    ){
+        ObjectOutputStream out = new ObjectOutputStream(fileOut)
+
+    ) {
 
       out.writeInt(shapeList.size());
+
       for (Shape shape: shapeList) {
+
         out.writeObject(shape);
-        writeColor(s);
+
       }
 
-
     } catch (IOException e){
+
       e.printStackTrace();
+
     }
-
-  }
-
-  private void writeColor(Color color, ObjectOutputStream out) throws IOException {
-
-    out.writeDouble(color.getRed());
-    out.writeDouble(color.getGreen());
-    out.writeDouble(color.getBlue());
-    out.writeDouble(color.getOpacity());
-
   }
 
   public void deserializeShapeList(String fileName) {
 
     try(
+
         FileInputStream fileIn = new FileInputStream(fileName);
-        ObjectInputStream in = new ObjectInputStream(fileIn);
-    )
-    {
+        ObjectInputStream in = new ObjectInputStream(fileIn)
+
+    ) {
 
       shapeList.clear();
+      shapesCounter = 0;
+
       int size = in.readInt();
 
       for (int i=0; i<size; i++) {
 
         shapeList.add((Shape) in.readObject());
+        shapesCounter++;
+
       }
 
-
     } catch (IOException | ClassNotFoundException e) {
+
       e.printStackTrace();
+
     }
-
-
   }
 
 
-//
-//  public static Color readColor(ObectInputStream s) throws IOException {
-//    double r = s.readDouble();
-//    double g = s.readDouble();
-//    double b = s.readDouble();
-//    double opacity = s.readDouble();
-//
-//    return new Color(r,g,b,opacity);
-//  }
 
 
 

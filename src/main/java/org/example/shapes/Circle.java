@@ -2,8 +2,9 @@ package org.example.shapes;
 
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
+import org.example.shapeOptions.Point;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.effect.Light.Point;
+import org.example.shapeOptions.Color;
 
 public class Circle implements Shape {
 
@@ -46,9 +47,10 @@ public class Circle implements Shape {
     @Override
     public void fill(GraphicsContext gc) {
 
-        gc.setStroke(lineColor);
+
+        gc.setStroke(lineColor.getPaintColor());
         gc.setLineWidth(lineWidth);
-        gc.setFill(fillColor);
+        gc.setFill(fillColor.getPaintColor());
 
         double radius = countRadius();
         double diameter  = radius*2;
