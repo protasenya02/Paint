@@ -1,11 +1,10 @@
-package org.example;
-
+package org.example.shapes;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Light.Point;
 import javafx.scene.paint.Color;
 
-public class Ellipse implements Shape {
+public class Rectangle implements Shape {
 
     private final Color lineColor;
     private final boolean isLine;
@@ -16,7 +15,7 @@ public class Ellipse implements Shape {
     private Point secondPoint;
     private boolean firstDrawCall = true;
 
-    public Ellipse(Color lineColor, boolean isLine, boolean isFill, Color fillColor, int lineWidth) {
+    public Rectangle(Color lineColor, boolean isLine, boolean isFill, Color fillColor, int lineWidth) {
 
         this.lineColor = lineColor;
         this.isLine = isLine;
@@ -41,7 +40,7 @@ public class Ellipse implements Shape {
         firstDrawCall = false;
 
         return true;
-    };
+    }
 
     @Override
     public void fill(GraphicsContext gc) {
@@ -51,31 +50,30 @@ public class Ellipse implements Shape {
         gc.setFill(fillColor);
 
         double width = Math.abs(secondPoint.getX() - firstPoint.getX());
-        double heigth = Math.abs(secondPoint.getY() - firstPoint.getY());
+        double height = Math.abs(secondPoint.getY() - firstPoint.getY());
 
         double startPointX = Math.min(firstPoint.getX(), secondPoint.getX());
         double startPointY = Math.min(firstPoint.getY(), secondPoint.getY());
 
         if (isFill) {
 
-            gc.fillOval(startPointX, startPointY, width, heigth);
+            gc.fillRect(startPointX, startPointY, width, height);
 
             if (isLine) {
 
-                gc.strokeOval(startPointX, startPointY, width, heigth);
+                gc.strokeRect(startPointX, startPointY, width, height);
 
             }
 
         } else {
 
-            gc.strokeOval(startPointX, startPointY, width, heigth);
+            gc.strokeRect(startPointX, startPointY, width, height);
 
         }
-    };
+    }
 
     @Override
     public void deleteLastPoint() {
 
-    };
-
+    }
 }

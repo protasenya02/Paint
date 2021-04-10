@@ -1,8 +1,11 @@
-package org.example;
+package org.example.factories;
 
 import javafx.scene.paint.Color;
+import org.example.shapes.Shape;
+import org.example.shapes.Polygon;
 
-public class PolygonFactory implements ShapeFactory{
+
+public class PolygonFactory implements ShapeFactory {
 
     @Override
     public Shape createShape(Color lineColor, boolean isLine, boolean isFill, Color fillColor,

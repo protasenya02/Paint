@@ -1,8 +1,10 @@
-package org.example;
+package org.example.factories;
 
 import javafx.scene.paint.Color;
+import org.example.shapes.Shape;
+import org.example.shapes.Ellipse;
 
-public class EllipseFactory implements ShapeFactory{
+public class EllipseFactory implements ShapeFactory {
 
     @Override
     public Shape createShape(Color lineColor, boolean isLine, boolean isFill, Color fillColor,

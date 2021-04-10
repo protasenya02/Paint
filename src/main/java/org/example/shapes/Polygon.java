@@ -1,4 +1,5 @@
-package org.example;
+package org.example.shapes;
+
 
 import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
@@ -7,20 +8,24 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeLineJoin;
 
-
-public class Polyline implements Shape {
+public class Polygon implements Shape {
 
     private final Color lineColor;
+    private final boolean isLine;
+    private final boolean isFill;
+    private final Color fillColor;
     private final int lineWidth;
-    private ArrayList<Point> pointsArr = new ArrayList<>();
-    private boolean firstDrawCall = true;
+    private final ArrayList<Point> pointsArr = new ArrayList<>();
 
-    public Polyline(Color lineColor,boolean isLine, boolean isFill, Color fillColor, int lineWidth) {
+    public Polygon(Color lineColor, boolean isLine, boolean isFill, Color fillColor, int lineWidth) {
 
         this.lineColor = lineColor;
+        this.isLine = isLine;
+        this.isFill = isFill;
+        this.fillColor = fillColor;
         this.lineWidth = lineWidth;
 
-    };
+    }
 
     @Override
     public boolean draw(GraphicsContext gc, Point point) {
@@ -29,15 +34,16 @@ public class Polyline implements Shape {
         fill(gc);
 
         return true;
-    };
+    }
 
     @Override
-    public void fill(GraphicsContext gc){
+    public void fill(GraphicsContext gc) {
 
-        if (pointsArr.size() > 2 ) {
+        if (pointsArr.size() > 3 ) {
 
             gc.setStroke(lineColor);
             gc.setLineWidth(lineWidth);
+            gc.setFill(fillColor);
             gc.setLineCap(StrokeLineCap.ROUND);
             gc.setLineJoin(StrokeLineJoin.ROUND);
 
@@ -46,13 +52,29 @@ public class Polyline implements Shape {
             double[] yPoints = new double[nPoints];
 
             for (int i = 0; i < pointsArr.size(); i++) {
+
                 xPoints[i] = pointsArr.get(i).getX();
                 yPoints[i] = pointsArr.get(i).getY();
+
             }
 
-            gc.strokePolyline(xPoints, yPoints, nPoints);
+            if (isFill) {
+
+                gc.fillPolygon(xPoints, yPoints, nPoints);
+
+                if (isLine) {
+
+                    gc.strokePolygon(xPoints, yPoints, nPoints);
+
+                }
+
+            } else {
+
+                gc.strokePolygon(xPoints, yPoints, nPoints);
+
+            }
         }
-    };
+    }
 
     @Override
     public void deleteLastPoint() {
@@ -62,6 +84,6 @@ public class Polyline implements Shape {
             pointsArr.remove(pointsArr.size() - 1);
 
         }
-    };
+    }
 
 }

@@ -1,11 +1,11 @@
-package org.example;
+package org.example.shapes;
+
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Light.Point;
 import javafx.scene.paint.Color;
 
-
-public class Rectangle implements Shape {
+public class Ellipse implements Shape {
 
     private final Color lineColor;
     private final boolean isLine;
@@ -16,15 +16,13 @@ public class Rectangle implements Shape {
     private Point secondPoint;
     private boolean firstDrawCall = true;
 
-    public Rectangle(Color lineColor, boolean isLine, boolean isFill, Color fillColor, int lineWidth) {
+    public Ellipse(Color lineColor, boolean isLine, boolean isFill, Color fillColor, int lineWidth) {
 
         this.lineColor = lineColor;
         this.isLine = isLine;
         this.isFill = isFill;
         this.fillColor = fillColor;
         this.lineWidth = lineWidth;
-
-
 
     }
 
@@ -43,7 +41,7 @@ public class Rectangle implements Shape {
         firstDrawCall = false;
 
         return true;
-    };
+    }
 
     @Override
     public void fill(GraphicsContext gc) {
@@ -60,24 +58,24 @@ public class Rectangle implements Shape {
 
         if (isFill) {
 
-            gc.fillRect(startPointX, startPointY, width, height);
+            gc.fillOval(startPointX, startPointY, width, height);
 
             if (isLine) {
 
-                gc.strokeRect(startPointX, startPointY, width, height);
+                gc.strokeOval(startPointX, startPointY, width, height);
 
             }
 
         } else {
 
-            gc.strokeRect(startPointX, startPointY, width, height);
+            gc.strokeOval(startPointX, startPointY, width, height);
 
         }
-    };
+    }
 
     @Override
     public void deleteLastPoint() {
 
+    }
 
-    };
 }

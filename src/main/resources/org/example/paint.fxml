@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
 
-<Pane fx:id="mainPain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.PrimaryController">
+<Pane fx:id="mainPain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#mainPainKeyPressed" prefHeight="800.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.PaintController">
    <children>
       <MenuBar layoutY="2.0" prefHeight="50.0" prefWidth="1100.0">
          <menus>
@@ -41,7 +41,7 @@
             </Menu>
          </menus>
       </MenuBar>
-      <Canvas fx:id="canvas" height="686.0" layoutY="111.0" width="1105.0" />
+      <Canvas fx:id="canvas" height="686.0" layoutY="111.0" onMouseClicked="#canvasMouseClicked" onMouseMoved="#canvasMouseMoved" width="1105.0" />
       <Pane fx:id="menuPain" layoutY="29.0" prefHeight="90.0" prefWidth="1105.0" style="-fx-background-color: #D3D3D3#D3D3D3;">
          <children>
             <Label fx:id="lblShapes" layoutX="16.0" layoutY="26.0" prefHeight="18.0" prefWidth="49.0" text="Shapes:" />
@@ -64,7 +64,9 @@
             <Button fx:id="btnPolygon" layoutX="157.0" layoutY="55.0" mnemonicParsing="false" onAction="#btnPolygonClicked" prefHeight="30.0" prefWidth="80.0" text="polygon" />
             <TextField fx:id="tfLineWidth" layoutX="325.0" layoutY="21.0" prefHeight="26.0" prefWidth="79.0" text="5" />
             <CheckBox fx:id="cbBorder" focusTraversable="false" layoutX="640.0" layoutY="26.0" mnemonicParsing="false" text="Border" />
-            <Button fx:id="btnClear" focusTraversable="false" layoutX="995.0" layoutY="19.0" mnemonicParsing="false" onAction="#btnClearCliсked" prefHeight="30.0" prefWidth="50.0" text="clear" />
+            <Button fx:id="btnClear" focusTraversable="false" layoutX="995.0" layoutY="19.0" mnemonicParsing="false" onAction="#btnClearClicked" prefHeight="30.0" prefWidth="50.0" text="clear" />
+            <Button fx:id="btnUndo" layoutX="254.0" layoutY="55.0" mnemonicParsing="false" onAction="#btnUndoClicked" prefHeight="30.0" prefWidth="50.0" text="undo" />
+            <Button fx:id="btnRedo" layoutX="312.0" layoutY="55.0" mnemonicParsing="false" onAction="#btnRedoClicked" prefHeight="30.0" prefWidth="50.0" text="redo" />
          </children>
       </Pane>
    </children>

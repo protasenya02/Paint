@@ -1,11 +1,10 @@
-package org.example;
-
+package org.example.shapes;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Light.Point;
 
 // интерфейс для всех фигур
-interface Shape {
+public interface Shape {
 
     boolean draw(GraphicsContext gc, Point point);
 
@@ -14,8 +13,3 @@ interface Shape {
     void deleteLastPoint();
 
 }
-
-
-
-
-

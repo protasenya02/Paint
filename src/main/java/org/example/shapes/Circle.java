@@ -1,12 +1,10 @@
-package org.example;
+package org.example.shapes;
 
-
-
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Light.Point;
 import javafx.scene.paint.Color;
-import static java.lang.Math.*;
-
 
 public class Circle implements Shape {
 
@@ -27,7 +25,7 @@ public class Circle implements Shape {
         this.fillColor = fillColor;
         this.lineWidth = lineWidth;
 
-    };
+    }
 
     @Override
     public boolean draw(GraphicsContext gc, Point point){
@@ -44,7 +42,7 @@ public class Circle implements Shape {
         firstDrawCall = false;
 
         return true;
-    };
+    }
 
     @Override
     public void fill(GraphicsContext gc) {
@@ -74,7 +72,7 @@ public class Circle implements Shape {
                 diameter , diameter );
 
         }
-    };
+    }
 
     private double countRadius() {
 
@@ -86,5 +84,5 @@ public class Circle implements Shape {
     @Override
     public void deleteLastPoint() {
 
-    };
+    }
 }

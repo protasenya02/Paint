@@ -18,7 +18,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        scene = new Scene(loadFXML("primary"), 1100, 800);      // создание сцены и подключение fxml файла
+        scene = new Scene(loadFXML("paint"), 1100, 800);      // создание сцены и подключение fxml файла
         primaryStage.setScene(scene);                                  // установка сцены для объекта primaryStage
         primaryStage.setTitle("Paint");                                // установка заголовка
         primaryStage.centerOnScreen();                                 // расположение окна в центре экрана
