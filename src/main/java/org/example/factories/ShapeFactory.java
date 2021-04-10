@@ -1,6 +1,6 @@
 package org.example.factories;
 
-import javafx.scene.paint.Color;
+import org.example.Color;
 import org.example.shapes.Shape;
 
 public interface ShapeFactory {

@@ -1,11 +1,11 @@
 package org.example;
 
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 /**
@@ -16,13 +16,14 @@ public class App extends Application {
     private static Scene scene;
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage paintStage) throws IOException {
 
         scene = new Scene(loadFXML("paint"), 1100, 800);      // создание сцены и подключение fxml файла
-        primaryStage.setScene(scene);                                  // установка сцены для объекта primaryStage
-        primaryStage.setTitle("Paint");                                // установка заголовка
-        primaryStage.centerOnScreen();                                 // расположение окна в центре экрана
-        primaryStage.show();                                           // показ окна
+        paintStage.setScene(scene);                                  // установка сцены для объекта primaryStage
+        paintStage.setTitle("Paint");                                // установка заголовка
+        paintStage.centerOnScreen();                                 // расположение окна в центре экрана
+        paintStage.show();                                           // показ окна
+
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -37,4 +38,6 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
+
+
 }

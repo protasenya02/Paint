@@ -4,7 +4,6 @@ import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Light.Point;
-import javafx.scene.paint.Color;
 
 public class Circle implements Shape {
 

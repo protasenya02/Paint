@@ -1,5 +1,7 @@
 package org.example;
 
+
+import java.io.File;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -8,10 +10,9 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.Light.Point;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import org.example.factories.CircleFactory;
 import org.example.factories.EllipseFactory;
 import org.example.factories.PolygonFactory;
@@ -41,6 +42,7 @@ public class PaintController {
     private GraphicsContext gc;
     private Shape shape;
 
+
     @FXML
     void initialize() { gc = canvas.getGraphicsContext2D();}
 
@@ -56,9 +58,7 @@ public class PaintController {
         shapeFactory = new CircleFactory();
     }
 
-    public void btnEllipseClicked() {
-        shapeFactory = new EllipseFactory();
-    }
+    public void btnEllipseClicked() { shapeFactory = new EllipseFactory(); }
 
     public void btnPolygonClicked() {
         shapeFactory = new PolygonFactory();
@@ -84,7 +84,11 @@ public class PaintController {
                 if (!isShapeDrawing) {
 
                     int width = Integer.parseInt(tfLineWidth.getText());
-                    shape = shapeFactory.createShape(cpLineColor.getValue(), cbBorder.isSelected(),
+
+                    Color lineColor = new Color(cpLineColor.getValue().getRed(), cpLineColor.getValue().getGreen(),
+                        cpLineColor.getValue().getRed(), cpLineColor.getValue().getOpacity());
+
+                    shape = shapeFactory.createShape(lineColor, cbBorder.isSelected(),
                         cbFill.isSelected(), cpFillColor.getValue(), width);
 
                     shapeList.addShape(shape);
@@ -131,21 +135,37 @@ public class PaintController {
     void btnRedoClicked() { shapeList.redoShape(gc);}
 
     @FXML
-    void mainPainKeyPressed(KeyEvent keyEvent) {
+    void menuSaveClicked() {
 
-        boolean isUndoClicked  = (keyEvent.isShortcutDown() && keyEvent.getCode() == KeyCode.Z);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Document");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Binary", "*.bin");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showSaveDialog(null);
 
-        if (isUndoClicked) {
-
-            if (keyEvent.isShiftDown()) {
-                shapeList.redoShape(gc);
-            } else {
-                shapeList.undoShape(gc);
-            }
+        if (file != null) {
+            shapeList.serializeShapeList(file.toString());
         }
+
     }
 
 
+    @FXML
+    void menuOpenClicked() {
 
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Document");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Binary", "*.bin");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File file = fileChooser.showOpenDialog(null);
+
+        if (file != null) {
+            shapeList.deserializeShapeList(file.toString());
+        }
+    }
 
 }
+
+
+
+
