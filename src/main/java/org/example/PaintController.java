@@ -130,7 +130,7 @@ public class PaintController {
     void btnRedoClicked() { shapeList.redoShape(gc);}
 
     @FXML
-    void menuSaveClicked() {
+    void menuSaveAsClicked() {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Document");

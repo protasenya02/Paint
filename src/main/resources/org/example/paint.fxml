@@ -20,25 +20,16 @@
          <menus>
             <Menu mnemonicParsing="false" text="File">
                <items>
-                  <MenuItem mnemonicParsing="false" text="New">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="N" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
-                     </accelerator></MenuItem>
-                  <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="menuOpen" mnemonicParsing="false" onAction="#menuOpenClicked" text="Open">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="O" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
                      </accelerator></MenuItem>
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="menuSave" mnemonicParsing="false" onAction="#menuSaveClicked" text="Save">
+                  <MenuItem fx:id="menuSave1" mnemonicParsing="false" onAction="#menuSaveAsClicked" text="Save ">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="S" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
-                     </accelerator></MenuItem>
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Close Window">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="W" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
-                     </accelerator></MenuItem>
+                     </accelerator>
+                  </MenuItem>
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Edit">
@@ -60,7 +51,7 @@
             </Menu>
          </menus>
       </MenuBar>
-      <Canvas fx:id="canvas" height="686.0" layoutY="111.0" onMouseClicked="#canvasMouseClicked" onMouseMoved="#canvasMouseMoved" width="1105.0" />
+      <Canvas fx:id="canvas" height="696.0" layoutY="111.0" onMouseClicked="#canvasMouseClicked" onMouseMoved="#canvasMouseMoved" width="1105.0" />
       <Pane fx:id="menuPain" layoutY="29.0" prefHeight="90.0" prefWidth="1105.0" style="-fx-background-color: #D3D3D3#D3D3D3;">
          <children>
             <Label fx:id="lblShapes" layoutX="16.0" layoutY="26.0" prefHeight="18.0" prefWidth="49.0" text="Shapes:" />
