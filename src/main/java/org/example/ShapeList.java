@@ -100,6 +100,7 @@ public class ShapeList {
 
     ) {
 
+      clearUndoShapes();
       out.writeInt(shapeList.size());
 
       for (Shape shape: shapeList) {
