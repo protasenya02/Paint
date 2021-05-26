@@ -1,7 +1,5 @@
-package org.example.factories;
+package org.example.core;
 
-import org.example.shapeOptions.Color;
-import org.example.shapes.Shape;
 
 public interface ShapeFactory {
 

@@ -1,0 +1,6 @@
+org/example/core/IService.class
+org/example/core/Point.class
+org/example/core/Color.class
+module-info.class
+org/example/core/Shape.class
+org/example/core/ShapeFactory.class

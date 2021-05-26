@@ -70,8 +70,8 @@
             <Button fx:id="btnLine" layoutX="72.0" layoutY="20.0" minWidth="45.0" mnemonicParsing="false" onAction="#btnLineClicked" prefHeight="30.0" prefWidth="50.0" text="line" />
             <Button fx:id="btnRect" layoutX="129.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnRectClicked" prefHeight="30.0" prefWidth="50.0" text="rect" />
             <Button fx:id="btnCircle" layoutX="186.0" layoutY="20.0" mnemonicParsing="false" onAction="#btnCircleClicked" prefHeight="30.0" prefWidth="50.0" text="circle" />
-            <Button fx:id="btnEllipse" layoutX="72.0" layoutY="55.0" minWidth="48.0" mnemonicParsing="false" onAction="#btnEllipseClicked" prefHeight="30.0" prefWidth="80.0" text="oval" />
-            <Button fx:id="btnPolygon" layoutX="157.0" layoutY="55.0" mnemonicParsing="false" onAction="#btnPolygonClicked" prefHeight="30.0" prefWidth="80.0" text="polygon" />
+            <Button fx:id="btnEllipse" layoutX="72.0" layoutY="55.0" minWidth="48.0" mnemonicParsing="false" onAction="#btnEllipseClicked" prefHeight="30.0" prefWidth="50.0" text="oval" />
+            <Button fx:id="btnPolygon" layoutX="129.0" layoutY="55.0" mnemonicParsing="false" onAction="#btnPolygonClicked" prefHeight="30.0" prefWidth="50.0" text="polygon" />
             <TextField fx:id="tfLineWidth" layoutX="325.0" layoutY="21.0" prefHeight="26.0" prefWidth="79.0" text="5" />
             <CheckBox fx:id="cbBorder" focusTraversable="false" layoutX="640.0" layoutY="26.0" mnemonicParsing="false" text="Border" />
             <Button fx:id="btnClear" focusTraversable="false" layoutX="995.0" layoutY="19.0" mnemonicParsing="false" onAction="#btnClearClicked" prefHeight="30.0" prefWidth="50.0" text="clear" />

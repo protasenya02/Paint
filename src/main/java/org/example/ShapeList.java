@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
-import org.example.shapes.Shape;
+import org.example.core.Shape;
 
 public class ShapeList {
 

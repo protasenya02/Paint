@@ -1,0 +1,4 @@
+org/example/plugins/trapezoid/Service.class
+module-info.class
+org/example/plugins/trapezoid/TrapezoidFactory.class
+org/example/plugins/trapezoid/Trapezoid.class

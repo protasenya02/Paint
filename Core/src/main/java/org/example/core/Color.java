@@ -1,4 +1,4 @@
-package org.example.shapeOptions;
+package org.example.core;
 
 import java.io.Serializable;
 

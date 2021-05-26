@@ -2,9 +2,10 @@ package org.example.shapes;
 
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
-import org.example.shapeOptions.Point;
 import javafx.scene.canvas.GraphicsContext;
-import org.example.shapeOptions.Color;
+import org.example.core.Color;
+import org.example.core.Point;
+import org.example.core.Shape;
 
 public class Circle implements Shape {
 

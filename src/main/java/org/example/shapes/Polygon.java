@@ -3,10 +3,11 @@ package org.example.shapes;
 
 import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
-import org.example.shapeOptions.Point;
-import org.example.shapeOptions.Color;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeLineJoin;
+import org.example.core.Color;
+import org.example.core.Point;
+import org.example.core.Shape;
 
 public class Polygon implements Shape {
 
