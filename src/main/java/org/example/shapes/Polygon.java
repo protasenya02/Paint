@@ -53,26 +53,19 @@ public class Polygon implements Shape {
             double[] yPoints = new double[nPoints];
 
             for (int i = 0; i < pointsArr.size(); i++) {
-
                 xPoints[i] = pointsArr.get(i).getX();
                 yPoints[i] = pointsArr.get(i).getY();
-
             }
 
             if (isFill) {
-
                 gc.fillPolygon(xPoints, yPoints, nPoints);
 
                 if (isLine) {
-
                     gc.strokePolygon(xPoints, yPoints, nPoints);
-
                 }
 
             } else {
-
                 gc.strokePolygon(xPoints, yPoints, nPoints);
-
             }
         }
     }

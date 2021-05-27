@@ -106,15 +106,12 @@ public class PaintController {
                         cbFill.isSelected(), fillColor, width);
 
                     shapeList.addShape(shape);
-
                 }
                 isShapeDrawing = shape.draw(gc, newPoint);
 
                 // right
             } else {
-
                 isShapeDrawing = false;
-
             }
     }
 
@@ -136,7 +133,6 @@ public class PaintController {
             Point newPoint = new Point(mouseEvent.getX(), mouseEvent.getY());
             shape.draw(gc, newPoint);
         }
-
     }
 
     @FXML
@@ -157,9 +153,7 @@ public class PaintController {
         if (file != null) {
             shapeList.serializeShapeList(file.toString());
         }
-
     }
-
 
     @FXML
     void menuOpenClicked() {
@@ -171,11 +165,9 @@ public class PaintController {
         File file = fileChooser.showOpenDialog(null);
 
         if (file != null) {
-
             shapeList.deserializeShapeList(file.toString());
             shapeList.clearCanvas(gc);
             shapeList.drawAll(gc);
-
         }
     }
 
